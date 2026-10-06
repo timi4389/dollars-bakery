@@ -35,7 +35,7 @@
     "addressLocality": "Kpalsi",
     "addressCountry": "GH"
   },
-  "priceRange": "GH₵10 - GH₵400",
+  "priceRange": "GH₵10 - GH₵400+",
   "servesCuisine": "Bakery, Cakes, Pastries",
   "url": "https://timi4389.github.io/dollars-bakery/"
 }
@@ -101,6 +101,7 @@ section{ scroll-margin-top:90px; }
   display:inline-block; font-size:.76rem; font-weight:600;
   letter-spacing:.2em; text-transform:uppercase;
   color:var(--gold); margin-bottom:14px;
+  position:relative;
 }
 .section-head h2{ font-size:clamp(1.85rem, 3.6vw, 2.7rem); margin-bottom:16px; }
 .section-head p{ color:var(--muted); font-size:1.02rem; line-height:1.75; }
@@ -307,7 +308,13 @@ section{ scroll-margin-top:90px; }
   box-shadow:0 3px 10px rgba(0,0,0,.07);
 }
 .card-body{ display:flex; flex-direction:column; flex:1; padding:22px 22px 24px; gap:11px; }
-.card-title{ font-size:1.18rem; line-height:1.3; }
+.card-title{ font-size:1.18rem; line-height:1.3; position:relative; display:inline-block; transition:color .25s ease; }
+.card-title::after{
+  content:""; position:absolute; left:0; bottom:-4px;
+  width:0; height:2px; background:var(--gold);
+  transition:width .35s ease;
+}
+.card:hover .card-title::after{ width:42px; }
 .card-desc{ font-size:.9rem; color:var(--muted); line-height:1.65; }
 .card-meta{
   margin-top:auto; padding-top:15px;
@@ -319,8 +326,9 @@ section{ scroll-margin-top:90px; }
 .meta-value{ color:var(--ink-soft); font-weight:500; text-align:right; }
 .meta-value.price{
   color:var(--gold-dark); font-family:var(--font-head);
-  font-size:1.08rem; font-weight:700;
+  font-size:1.02rem; font-weight:700;
 }
+.meta-value.price.price-special{ font-size:.86rem; font-family:var(--font-body); letter-spacing:.01em; }
 .card .btn{ margin-top:14px; padding:13px 22px; font-size:.9rem; }
 .empty-state{
   margin-top:14px; padding:56px 26px; text-align:center;
@@ -329,6 +337,29 @@ section{ scroll-margin-top:90px; }
   color:var(--muted); font-size:.98rem;
 }
 .empty-state strong{ color:var(--ink); display:block; margin-bottom:6px; font-family:var(--font-head); font-size:1.15rem; }
+.empty-state .btn{ margin-top:20px; }
+
+.custom-callout{
+  margin-top:46px;
+  padding:36px 30px;
+  border-radius:var(--radius-lg);
+  background:linear-gradient(135deg, var(--gold-tint) 0%, #fbf6ec 100%);
+  border:1px solid var(--gold-light);
+  text-align:center;
+  display:flex; flex-direction:column; align-items:center; gap:14px;
+  box-shadow:var(--shadow-sm);
+}
+.custom-callout h3{
+  font-size:clamp(1.2rem, 2.5vw, 1.55rem);
+  color:var(--ink);
+}
+.custom-callout p{
+  color:var(--ink-soft);
+  font-size:.95rem;
+  line-height:1.7;
+  max-width:600px;
+}
+.custom-callout .btn{ margin-top:6px; }
 
 .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
 .about-media{
@@ -516,6 +547,7 @@ section{ scroll-margin-top:90px; }
   .search-field{ max-width:none; }
   .contact-actions .btn{ flex:1 1 100%; }
   .hero-bg img{ object-position:center 22%; }
+  .custom-callout{ padding:30px 22px; }
 }
 @media (max-width: 480px){
   .container{ padding:0 18px; }
@@ -583,7 +615,7 @@ section{ scroll-margin-top:90px; }
       <h1>Beautifully Crafted Cakes. Made for Your Special Moments.</h1>
 
       <p>
-        Dollars Bakery creates quality cakes and bakery products for birthdays, weddings,
+        Dollars Bakery creates quality cakes, pastries and gift boxes for birthdays, weddings,
         house parties, celebrations and every occasion worth remembering. Every order is
         baked fresh and finished by hand in our bakery at T Poly, Kpalsi.
       </p>
@@ -629,9 +661,9 @@ section{ scroll-margin-top:90px; }
         <span class="eyebrow">Our Cakes &amp; Pastries</span>
         <h2>Browse Our Collection</h2>
         <p>
-          Every cake and pastry is made to order with careful attention to taste, finish
-          and detail. Search or filter below, then tap <strong>Order Now</strong> to start
-          your order directly on WhatsApp.
+          Every cake, pastry and gift box is made to order with careful attention to
+          taste, finish and detail. Search or filter below, then tap <strong>Order Now</strong>
+          to start your order directly on WhatsApp.
         </p>
       </div>
 
@@ -653,8 +685,22 @@ section{ scroll-margin-top:90px; }
 
       <p class="empty-state" id="emptyState" hidden>
         <strong>No items match your search.</strong>
-        Please contact Dollars Bakery for a custom order.
+        Please contact Dollars Bakery for a custom order — we can create something special just for you.
+        <a class="btn btn-primary"
+           href="https://wa.me/233506508264?text=Hello%20Dollars%20Bakery%2C%20I%20am%20looking%20for%20something%20specific%20that%20I%20could%20not%20find%20on%20your%20website.%20Please%20help%20me."
+           target="_blank" rel="noopener" style="display:inline-flex; margin-top:20px;">Ask on WhatsApp</a>
       </p>
+
+      <div class="custom-callout reveal">
+        <h3>Looking for something specific?</h3>
+        <p>
+          Can't find the cake, gift box or pastry you had in mind? We create custom orders for
+          every occasion — tell us your idea, size and colours, and we'll bring it to life.
+        </p>
+        <a class="btn btn-primary"
+           href="https://wa.me/233506508264?text=Hello%20Dollars%20Bakery%2C%20I%20have%20a%20custom%20order%20request.%20Please%20help%20me%20with%20the%20details."
+           target="_blank" rel="noopener">Request a Custom Order</a>
+      </div>
 
     </div>
   </section>
@@ -680,8 +726,9 @@ section{ scroll-margin-top:90px; }
 
         <p>
           Every cake is baked fresh to order and finished by hand — from simple birthday
-          cakes to elegant two-tier wedding cakes. We pay close attention to taste,
-          texture and presentation, because a cake should look as good as it tastes.
+          cakes to elegant two-tier wedding cakes, celebration cakes, gift boxes and
+          money bouquets. We pay close attention to taste, texture and presentation,
+          because a cake should look as good as it tastes.
         </p>
 
         <p>
@@ -703,7 +750,7 @@ section{ scroll-margin-top:90px; }
                  stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M20 6 9 17l-5-5"></path>
             </svg>
-            <span>Cakes baked fresh to order and finished by hand</span>
+            <span>Cakes, pastries and gift boxes made fresh to order</span>
           </li>
           <li>
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -902,7 +949,7 @@ section{ scroll-margin-top:90px; }
           </span>
         </a>
         <p>
-          Beautifully crafted cakes and bakery products for birthdays, weddings,
+          Beautifully crafted cakes, pastries and gift boxes for birthdays, weddings,
           celebrations and special orders. T Poly, Kpalsi, Ghana.
         </p>
       </div>
@@ -953,6 +1000,7 @@ section{ scroll-margin-top:90px; }
   var WEB3FORMS_ACCESS_KEY = '16f71a98-5d12-477c-88e6-b4934cc9bb9c';
 
   var cakes = [
+    /* ---------- BIRTHDAY CAKES ---------- */
     {
       name: "Pink Drip Birthday Cake",
       category: "Birthday Cakes",
@@ -1001,6 +1049,8 @@ section{ scroll-margin-top:90px; }
       image: "cake-10.jpg",
       description: "Red and blue buttercream cake with Spider-Man toppers and a personalised name plaque."
     },
+
+    /* ---------- WEDDING CAKES ---------- */
     {
       name: "Two-Tier Pearl Wedding Cake",
       category: "Wedding Cakes",
@@ -1009,6 +1059,16 @@ section{ scroll-margin-top:90px; }
       image: "cake-5.jpg",
       description: "Elegant two-tier cream buttercream cake with chocolate drip and delicate pearl detailing."
     },
+    {
+      name: "Three-Tier Pink Wedding Cake",
+      category: "Wedding Cakes",
+      size: "3 tier (6\" + 8\" + 10\")",
+      price: "From GH₵ 700",
+      image: "cake-15.jpg",
+      description: "Elegant three-tier cake with quilted pink middle tier, gold detailing, fresh sugar roses and gold accents."
+    },
+
+    /* ---------- CELEBRATION CAKES ---------- */
     {
       name: "Yellow Square Celebration Cake",
       category: "Celebration Cakes",
@@ -1034,6 +1094,40 @@ section{ scroll-margin-top:90px; }
       description: "Green buttercream cake decorated with gold and silver baubles, gold flakes and a gold Happy Birthday topper."
     },
     {
+      name: "Chocolate Celebration Cake",
+      category: "Celebration Cakes",
+      size: "Depends on size",
+      price: "Depends on specifications",
+      image: "cake-12.jpg",
+      description: "Rich, moist chocolate cake covered in smooth chocolate frosting, chocolate drip and topped with chocolate curls and chunks."
+    },
+    {
+      name: "Vanilla Celebration Cake",
+      category: "Celebration Cakes",
+      size: "Depends on size",
+      price: "Depends on specifications",
+      image: "cake-13.jpg",
+      description: "Light, fluffy vanilla cake with white buttercream, rosette piping and colourful sprinkles around the base."
+    },
+    {
+      name: "Weeping Cream Cake",
+      category: "Celebration Cakes",
+      size: "Depends on size",
+      price: "Depends on specifications",
+      image: "cake-14.jpg",
+      description: "Soft vanilla cream cake with a signature weeping drip of chocolate and caramel, topped with cream rosettes and chocolate shavings."
+    },
+    {
+      name: "Banana Cake",
+      category: "Celebration Cakes",
+      size: "Depends on size",
+      price: "Depends on specifications",
+      image: "cake-16.jpg",
+      description: "Moist banana cake with cream cheese frosting, fresh banana slices and crunchy crumble topping."
+    },
+
+    /* ---------- CUSTOM CAKES ---------- */
+    {
       name: "Doll Dress Cake",
       category: "Custom Cakes",
       size: "10 inch / custom",
@@ -1041,6 +1135,16 @@ section{ scroll-margin-top:90px; }
       image: "cake-6.jpg",
       description: "Custom doll dress cake piped in red and cream ruffles with pearl accents."
     },
+    {
+      name: "Dummy Display Cake",
+      category: "Custom Cakes",
+      size: "Custom / any tier count",
+      price: "Depends on specifications",
+      image: "cake-15-dummy.jpg",
+      description: "Beautifully decorated dummy cake for displays, photoshoots and events. Lightweight, durable and reusable — perfect for showcasing at weddings and exhibitions."
+    },
+
+    /* ---------- PASTRIES ---------- */
     {
       name: "Cream Buns",
       category: "Pastries",
@@ -1089,6 +1193,8 @@ section{ scroll-margin-top:90px; }
       image: "pastry-6.jpg",
       description: "Crunchy fried dough cubes, available in small, medium and large packs."
     },
+
+    /* ---------- GIFT BOXES ---------- */
     {
       name: "Balloon Chocolate Gift Box",
       category: "Gift Boxes",
@@ -1096,6 +1202,56 @@ section{ scroll-margin-top:90px; }
       price: "250",
       image: "gift-1.jpg",
       description: "Personalised purple balloon gift box filled with assorted chocolates and a custom message."
+    },
+    {
+      name: "Pink Beauty Gift Box",
+      category: "Gift Boxes",
+      size: "One size",
+      price: "Depends on specifications",
+      image: "gift-3.jpg",
+      description: "Pink gift box filled with beauty and pamper items — perfect for birthdays and special occasions. Contents can be personalised."
+    },
+    {
+      name: "Pink Luxury Gift Box",
+      category: "Gift Boxes",
+      size: "One size",
+      price: "Depends on specifications",
+      image: "gift-4.jpg",
+      description: "Elegant pink gift box with a purse, thermos flask, soft towel and a rose keepsake — beautifully arranged for her."
+    },
+    {
+      name: "Black & Blue Luxury Gift Box",
+      category: "Gift Boxes",
+      size: "One size",
+      price: "Depends on specifications",
+      image: "gift-5.jpg",
+      description: "Premium gift box with wallets, Victoria's Secret fragrance mist, Fox's cookies, chocolates and a delicate gold necklace."
+    },
+    {
+      name: "Pink Chocolate Gift Box",
+      category: "Gift Boxes",
+      size: "One size",
+      price: "Depends on specifications",
+      image: "gift-6.jpg",
+      description: "Pink personalised gift box with assorted chocolates, perfume, a single red rose and a custom name — perfect for birthdays."
+    },
+    {
+      name: "Red Heart Chocolate Box",
+      category: "Gift Boxes",
+      size: "One size",
+      price: "Depends on specifications",
+      image: "gift-7.jpg",
+      description: "Red heart-shaped box filled with assorted chocolates and a soft teddy bear — a sweet surprise for someone special."
+    },
+
+    /* ---------- BOUQUETS ---------- */
+    {
+      name: "Money Bouquet",
+      category: "Bouquets",
+      size: "Custom amount",
+      price: "Depends on specifications",
+      image: "gift-2.jpg",
+      description: "Stylish bouquet made with real cash notes arranged with fresh red roses and premium wrapping — a unique gift for birthdays, graduations and anniversaries."
     }
   ];
 
@@ -1111,8 +1267,24 @@ section{ scroll-margin-top:90px; }
 
   function orderMessage(name, price) {
     return 'Hello Dollars Bakery, I am interested in ordering the ' + name +
-           '. The listed price is GH\u20B5' + price +
+           '. The listed price is ' + price +
            '. Please let me know the next steps and availability.';
+  }
+
+  function formatPrice(price) {
+    var p = String(price === null || price === undefined ? '' : price).trim();
+    if (!p) return '';
+    if (/GH\u20B5/i.test(p)) return p;
+    if (/^(from|depends|starts)/i.test(p)) return p;
+    if (/^[A-Za-z]/.test(p)) return p;
+    return 'GH\u20B5 ' + p;
+  }
+
+  function isSpecialPrice(price) {
+    var p = String(price === null || price === undefined ? '' : price).trim();
+    if (!p) return false;
+    if (/^[0-9]+([.,][0-9]+)?$/.test(p)) return false;
+    return true;
   }
 
   var grid        = document.getElementById('cakeGrid');
@@ -1149,7 +1321,9 @@ section{ scroll-margin-top:90px; }
 
   function cardHTML(cake, index) {
     var name  = esc(cake.name);
-    var price = esc(cake.price);
+    var rawPrice = esc(cake.price);
+    var priceDisplay = esc(formatPrice(cake.price));
+    var priceClass = isSpecialPrice(cake.price) ? 'meta-value price price-special' : 'meta-value price';
     var image = esc(cake.image);
 
     return '' +
@@ -1169,11 +1343,11 @@ section{ scroll-margin-top:90px; }
             '</div>' +
             '<div class="meta-row">' +
               '<span class="meta-label">Price</span>' +
-              '<span class="meta-value price">GH\u20B5 ' + price + '</span>' +
+              '<span class="' + priceClass + '">' + priceDisplay + '</span>' +
             '</div>' +
           '</div>' +
           '<button type="button" class="btn btn-primary btn-block order-btn"' +
-            ' data-name="' + name + '" data-price="' + price + '">Order Now</button>' +
+            ' data-name="' + name + '" data-price="' + rawPrice + '">Order Now</button>' +
         '</div>' +
       '</article>';
   }
@@ -1431,4 +1605,4 @@ section{ scroll-margin-top:90px; }
 </script>
 
 </body>
-  </html>
+</html>
